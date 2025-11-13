@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
+	"github.com/sebmaz93/gokedex/internal/repl"
 )
 
 func main() {
-	fmt.Println("Hello, World!")
+	repl.StartRepl()
 }
