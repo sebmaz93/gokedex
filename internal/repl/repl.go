@@ -6,17 +6,23 @@ import (
 	"os"
 	"strings"
 
-	cmds "github.com/sebmaz93/gokedex/internal/repl/commands"
+	"github.com/sebmaz93/gokedex/internal/pokeapi"
 )
+
+type Config struct {
+	ApiClient   pokeapi.Client
+	NextUrl     *string
+	PreviousUrl *string
+}
 
 func cleanInput(text string) []string {
 	lower := strings.ToLower(text)
 	return strings.Fields(lower)
 }
 
-func StartRepl() {
+func StartRepl(config *Config) {
 	scanner := bufio.NewScanner(os.Stdin)
-	config := cmds.Config{}
+
 	for {
 		fmt.Print("Pokedex > ")
 		if scanner.Scan() {
@@ -26,12 +32,12 @@ func StartRepl() {
 				fmt.Println("Your command is empty.")
 				continue
 			}
-			cmd, err := cmds.GetCommand(words[0])
+			cmd, err := GetCommand(words[0])
 			if err != nil {
 				fmt.Println(err)
 				continue
 			}
-			err = cmd.Callback(&config)
+			err = cmd.Callback(config)
 			if err != nil {
 				fmt.Println(err)
 			}

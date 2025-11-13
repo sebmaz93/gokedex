@@ -1,4 +1,4 @@
-package commands
+package repl
 
 import "fmt"
 
@@ -39,9 +39,4 @@ func GetCommand(name string) (cliCommand, error) {
 		return cliCommand{}, fmt.Errorf("Unknown command")
 	}
 	return cmd, nil
-}
-
-type Config struct {
-	Next     string
-	Previous string
 }
