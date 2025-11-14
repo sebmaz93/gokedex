@@ -5,20 +5,29 @@ import "fmt"
 type cliCommand struct {
 	Name        string
 	Description string
-	Callback    func(*Config) error
+	Callback    func(*Config, string) error
 }
 
 func GetCommands() map[string]cliCommand {
 	return map[string]cliCommand{
 		"map": {
 			Name:        "map",
-			Description: "List map areas",
+			Description: "List location areas",
 			Callback:    commandMap,
 		},
 		"mapb": {
 			Name:        "mapb",
-			Description: "List previous map areas",
+			Description: "List previous location areas",
 			Callback:    commandMapB,
+		}, "explore": {
+			Name:        "explore",
+			Description: "Explore location area by {location_name}",
+			Callback:    commandExplore,
+		},
+		"catch": {
+			Name:        "catch",
+			Description: "Catch a Pokemon by {pokemon_name}",
+			Callback:    commandCatch,
 		},
 		"help": {
 			Name:        "help",

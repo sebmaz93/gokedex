@@ -13,6 +13,7 @@ type Config struct {
 	ApiClient   pokeapi.Client
 	NextUrl     *string
 	PreviousUrl *string
+	Pokebank    map[string]pokeapi.Pokemon
 }
 
 func cleanInput(text string) []string {
@@ -37,7 +38,11 @@ func StartRepl(config *Config) {
 				fmt.Println(err)
 				continue
 			}
-			err = cmd.Callback(config)
+			param := ""
+			if len(words) > 1 {
+				param = words[1]
+			}
+			err = cmd.Callback(config, param)
 			if err != nil {
 				fmt.Println(err)
 			}

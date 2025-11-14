@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func commandHelp(config *Config) error {
+func commandHelp(config *Config, param1 string) error {
 	fmt.Printf(`
 Welcome to the Pokedex!
 Usage:

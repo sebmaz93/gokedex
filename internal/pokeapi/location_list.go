@@ -6,16 +6,6 @@ import (
 	"net/http"
 )
 
-type AreaLocationsRes struct {
-	Count    int     `json:"count"`
-	Next     *string `json:"next"`
-	Previous *string `json:"previous"`
-	Results  []struct {
-		Name string `json:"name"`
-		URL  string `json:"url"`
-	} `json:"results"`
-}
-
 func (client *Client) ListAreaLocations(reqUrl *string) (AreaLocationsRes, error) {
 	url := "https://pokeapi.co/api/v2/location-area"
 	if reqUrl != nil {
