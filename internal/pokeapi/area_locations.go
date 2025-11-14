@@ -22,6 +22,15 @@ func (client *Client) ListAreaLocations(reqUrl *string) (AreaLocationsRes, error
 		url = *reqUrl
 	}
 
+	if d, ok := client.cache.Get(url); ok {
+		areaLocations := AreaLocationsRes{}
+		err := json.Unmarshal(d, &areaLocations)
+		if err != nil {
+			return areaLocations, err
+		}
+		return areaLocations, nil
+	}
+
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return AreaLocationsRes{}, err
