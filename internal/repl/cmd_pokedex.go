@@ -10,7 +10,7 @@ func commandPokedex(config *Config, params string) error {
 
 	fmt.Println("Your Pokedex:")
 	for _, v := range config.Pokebank {
-		fmt.Printf("- %s", v.Name)
+		fmt.Printf("- %s\n", v.Name)
 	}
 	fmt.Println("")
 
