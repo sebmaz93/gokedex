@@ -21,6 +21,9 @@ func commandCatch(config *Config, param string) error {
 	}
 	fmt.Printf("Throwing a Pokeball at %s...\n", pokemon.Name)
 	fmt.Printf("%s %s\n", pokemon.Name, status)
+	if status == "was caught!" {
+		fmt.Println("You may now inspect it with the inspect command.")
+	}
 	fmt.Println("")
 
 	config.Pokebank[pokemon.Name] = pokemon
